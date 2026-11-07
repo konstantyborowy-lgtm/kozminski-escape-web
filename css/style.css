@@ -1,0 +1,1157 @@
+/* ==========================================================================
+   KOZMINSKI ESCAPE: POLOWANIE NA ECTS
+   Oficjalny arkusz stylów Akademii Leona Koźmińskiego (ALK)
+   
+   Oficjalna paleta ALK:
+   - Główny granat: #002244
+   - Ciemny granat tła: #0a1128
+   - Akcentowe złoto: #f2a900
+   - Jasne złoto: #ffc740
+   - Kolor niebieski: #004b87
+   ========================================================================== */
+
+:root {
+  /* Oficjalna paleta barw ALK */
+  --alk-navy-main: #002244;
+  --alk-navy-dark: #0a1128;
+  --alk-navy-surface: #0e1d3e;
+  --alk-gold-accent: #f2a900;
+  --alk-gold-light: #ffc740;
+  --alk-gold-dark: #b87e00;
+  --alk-blue: #004b87;
+  --alk-blue-light: #0284c7;
+  --alk-blue-sky: #38bdf8;
+  
+  /* Kolory akcentowe i statusy */
+  --alk-patio-green: #107c41;
+  --alk-green-glow: #2ecc71;
+  --alk-pen-red: #e63946;
+  --alk-red-dark: #ba1a1a;
+
+  /* HUD & Glassmorphism */
+  --glass-bg: rgba(0, 34, 68, 0.78);
+  --glass-bg-hover: rgba(0, 75, 135, 0.82);
+  --glass-border: rgba(242, 169, 0, 0.35);
+  --glass-border-subtle: rgba(255, 255, 255, 0.12);
+  --glass-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.65);
+  
+  /* Typografia */
+  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-retro: 'Press Start 2P', monospace;
+
+  --text-primary: #ffffff;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-full: 9999px;
+  
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   Reset i struktura bazowa (Centrowanie w oknie)
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--alk-navy-dark);
+  background-image: 
+    radial-gradient(circle at 50% 12%, rgba(0, 75, 135, 0.35) 0%, transparent 60%),
+    radial-gradient(circle at 10% 90%, rgba(242, 169, 0, 0.08) 0%, transparent 45%),
+    radial-gradient(circle at 90% 85%, rgba(0, 34, 68, 0.8) 0%, transparent 50%),
+    linear-gradient(180deg, var(--alk-navy-dark) 0%, #050917 100%);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  overflow-x: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Wycentrowana powłoka aplikacji */
+.app-wrapper {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 14px 16px 24px;
+}
+
+/* ==========================================================================
+   Header Uczelni ALK
+   ========================================================================== */
+.univ-header {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 18px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  margin-bottom: 12px;
+  box-shadow: var(--glass-shadow);
+}
+
+.univ-logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.univ-crest {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, var(--alk-gold-light) 0%, var(--alk-gold-accent) 60%, var(--alk-gold-dark) 100%);
+  color: var(--alk-navy-main);
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  box-shadow: 0 0 16px rgba(242, 169, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.univ-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.univ-name {
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: #ffffff;
+  letter-spacing: -0.2px;
+}
+
+.univ-sub {
+  font-size: 0.75rem;
+  color: var(--alk-gold-light);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.game-meta-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  background: rgba(242, 169, 0, 0.12);
+  color: var(--alk-gold-light);
+  border: 1px solid rgba(242, 169, 0, 0.35);
+  box-shadow: 0 0 10px rgba(242, 169, 0, 0.15);
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--alk-green-glow);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--alk-green-glow);
+  animation: pulseNeon 1.8s infinite ease-in-out;
+}
+
+@keyframes pulseNeon {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.8); }
+}
+
+/* ==========================================================================
+   Główny Viewport Gry
+   ========================================================================== */
+.game-viewport {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ==========================================================================
+   2. Pasek stanu (HUD) - Styl Glassmorphism Retro-Arcade ze złotą ramką
+   ========================================================================== */
+.hud-panel {
+  width: 100%;
+  max-width: 800px;
+  display: grid;
+  grid-template-columns: 1.35fr 1.65fr 1.7fr auto;
+  gap: 10px;
+  align-items: stretch;
+}
+
+.hud-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: 9px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: var(--glass-shadow);
+  transition: all var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+.hud-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--alk-gold-light), transparent);
+  opacity: 0.6;
+}
+
+.hud-card:hover {
+  border-color: var(--alk-gold-accent);
+  background: var(--glass-bg-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -4px rgba(242, 169, 0, 0.2);
+}
+
+.hud-card-icon {
+  font-size: 1.35rem;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+
+.hud-card-body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.hud-card-label {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 0.6px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.hud-ects-val-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+}
+
+.hud-value {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.highlight-gold {
+  color: var(--alk-gold-light);
+  text-shadow: 0 0 12px rgba(242, 169, 0, 0.5);
+}
+
+.hud-target {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.progress-ring-container {
+  width: 100%;
+  margin-top: 3px;
+}
+
+.mini-progress-bar {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.mini-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--alk-gold-accent) 0%, var(--alk-gold-light) 100%);
+  box-shadow: 0 0 6px rgba(242, 169, 0, 0.6);
+  transition: width 0.3s ease;
+}
+
+/* Pasek Staminy - Płynne przejście gradientowe */
+.hud-stamina-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hud-stamina-val {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--alk-blue-sky);
+  font-family: var(--font-display);
+}
+
+.stamina-track {
+  width: 100%;
+  height: 10px;
+  background: rgba(10, 17, 40, 0.7);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-top: 4px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.stamina-fill {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--alk-blue) 0%, var(--alk-blue-light) 50%, var(--alk-blue-sky) 85%, #bae6fd 100%);
+  border-radius: var(--radius-full);
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+  transition: width 0.08s linear, background 0.3s ease;
+}
+
+.stamina-fill.low {
+  background: linear-gradient(90deg, var(--alk-red-dark) 0%, var(--alk-pen-red) 70%, #ff8787 100%);
+  box-shadow: 0 0 12px rgba(230, 57, 70, 0.8);
+  animation: staminaPulse 0.45s infinite alternate ease-in-out;
+}
+
+@keyframes staminaPulse {
+  from { opacity: 0.75; filter: brightness(0.9); }
+  to { opacity: 1; filter: brightness(1.25); }
+}
+
+/* Status / Lokalizacja / Zagrożenie */
+.status-badge-row {
+  display: flex;
+  gap: 6px;
+  margin-top: 3px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+.badge-location {
+  background: rgba(16, 124, 65, 0.28);
+  color: #4ade80;
+  border: 1px solid rgba(74, 222, 128, 0.4);
+}
+
+.badge-threat {
+  background: rgba(230, 57, 70, 0.22);
+  color: #fca5a5;
+  border: 1px solid rgba(230, 57, 70, 0.4);
+}
+
+/* Przyciski w HUD (Dźwięk i Pauza) */
+.hud-actions {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.hud-btn {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  color: #ffffff;
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: var(--glass-shadow);
+}
+
+.hud-btn:hover {
+  background: rgba(242, 169, 0, 0.2);
+  border-color: var(--alk-gold-accent);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 0 12px rgba(242, 169, 0, 0.35);
+}
+
+.hud-btn:active {
+  transform: translateY(1px) scale(0.97);
+}
+
+/* ==========================================================================
+   Kontener Canvas (800 x 540)
+   ========================================================================== */
+.canvas-wrapper {
+  position: relative;
+  width: 800px;
+  height: 540px;
+  max-width: 100%;
+  aspect-ratio: 800 / 540;
+  background-color: var(--alk-navy-main);
+  border: 2px solid var(--alk-gold-accent);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--glass-shadow), 0 0 35px rgba(0, 34, 68, 0.8), inset 0 0 20px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#game-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+/* ==========================================================================
+   Komiksowy Dymek nad Profesorem z Trójkątnym Wskaźnikiem
+   ========================================================================== */
+.professor-bubble {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 620px;
+  background: #ffffff;
+  color: #0f172a;
+  border: 3px solid var(--alk-pen-red);
+  border-radius: var(--radius-md);
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(230, 57, 70, 0.4);
+  z-index: 25;
+  animation: comicBubblePop 0.32s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  pointer-events: none;
+}
+
+.professor-bubble.hidden {
+  display: none !important;
+}
+
+/* Animacja wyskakiwania dymka */
+@keyframes comicBubblePop {
+  0% {
+    transform: translate(-50%, -20px) scale(0.85);
+    opacity: 0;
+  }
+  70% {
+    transform: translate(-50%, 2px) scale(1.03);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, 0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Trójkątny wskaźnik dymka (Comic Bubble Tail) */
+.professor-bubble::after,
+.bubble-tail {
+  content: '';
+  position: absolute;
+  bottom: -14px;
+  left: 48px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 14px solid #ffffff;
+  z-index: 2;
+}
+
+.professor-bubble::before {
+  content: '';
+  position: absolute;
+  bottom: -18px;
+  left: 46px;
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 18px solid var(--alk-pen-red);
+  z-index: 1;
+}
+
+.bubble-avatar {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  background: #fee2e2;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  border: 2px solid var(--alk-pen-red);
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(230, 57, 70, 0.25);
+}
+
+.bubble-pen-icon {
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  font-size: 1rem;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.bubble-content {
+  flex-grow: 1;
+}
+
+.bubble-speaker {
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: var(--alk-red-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.bubble-text {
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.35;
+}
+
+/* ==========================================================================
+   3. Ekrany Modalne & Złote Przyciski z Efektem Hover / Scale
+   ========================================================================== */
+.modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 17, 40, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 50;
+  transition: opacity var(--transition-smooth);
+}
+
+.modal-overlay.hidden {
+  display: none !important;
+}
+
+.modal-card {
+  width: 100%;
+  max-width: 640px;
+  max-height: 92%;
+  background: linear-gradient(175deg, #0e1e3e 0%, var(--alk-navy-main) 60%, var(--alk-navy-dark) 100%);
+  border: 2px solid var(--alk-gold-accent);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85), 0 0 35px rgba(242, 169, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: modalScaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalScaleIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal-header-hero {
+  padding: 20px 24px 14px;
+  background: linear-gradient(90deg, rgba(0, 34, 68, 0.95) 0%, rgba(0, 75, 135, 0.8) 100%);
+  border-bottom: 1px solid var(--glass-border);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.hero-crest {
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, var(--alk-gold-light) 0%, var(--alk-gold-accent) 60%, var(--alk-gold-dark) 100%);
+  color: var(--alk-navy-main);
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1.55rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(242, 169, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.hero-title-group .game-title {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+  text-transform: uppercase;
+  line-height: 1.1;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.hero-title-group .game-subtitle {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--alk-gold-light);
+  letter-spacing: 1px;
+}
+
+.modal-body-scroll {
+  padding: 18px 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.story-intro {
+  font-size: 0.92rem;
+  color: #cbd5e1;
+  line-height: 1.5;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--alk-gold-accent);
+}
+
+.legend-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.legend-heading {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--alk-gold-light);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.legend-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
+  transition: border-color var(--transition-fast);
+}
+
+.legend-item:hover {
+  border-color: var(--glass-border);
+}
+
+.legend-ico {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.legend-desc {
+  display: flex;
+  flex-direction: column;
+}
+
+.legend-desc strong {
+  font-size: 0.8rem;
+  color: #f1f5f9;
+}
+
+.legend-desc span {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.controls-guide {
+  background: rgba(0, 34, 68, 0.6);
+  border: 1px solid rgba(0, 75, 135, 0.5);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.guide-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--alk-blue-sky);
+  display: block;
+  margin-bottom: 2px;
+}
+
+.key-badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 4px;
+  padding: 1px 6px;
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: #f8fafc;
+  margin: 0 2px;
+}
+
+.modal-footer {
+  padding: 16px 24px 20px;
+  background: rgba(10, 17, 40, 0.95);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: center;
+}
+
+/* Złote Przyciski z Efektem Hover i Scale */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  padding: 12px 28px;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-transform: uppercase;
+}
+
+.btn-large {
+  width: 100%;
+  padding: 14px 28px;
+  font-size: 1.05rem;
+}
+
+/* Główny złoty przycisk ALK z hover/scale */
+.btn-primary, .btn-gold {
+  background: linear-gradient(135deg, var(--alk-gold-light) 0%, var(--alk-gold-accent) 60%, var(--alk-gold-dark) 100%);
+  color: var(--alk-navy-main);
+  border: 1px solid var(--alk-gold-light);
+  box-shadow: 0 6px 20px rgba(242, 169, 0, 0.45);
+}
+
+.btn-primary:hover, .btn-gold:hover {
+  background: linear-gradient(135deg, #ffe599 0%, var(--alk-gold-light) 40%, var(--alk-gold-accent) 100%);
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 10px 28px rgba(242, 169, 0, 0.75);
+}
+
+.btn-primary:active, .btn-gold:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #ef4444 0%, var(--alk-pen-red) 50%, var(--alk-red-dark) 100%);
+  color: #ffffff;
+  border: 1px solid #f87171;
+  box-shadow: 0 6px 20px rgba(230, 57, 70, 0.5);
+}
+
+.btn-danger:hover {
+  background: linear-gradient(135deg, #f87171 0%, #ef4444 50%, #b91c1c 100%);
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 10px 28px rgba(230, 57, 70, 0.75);
+}
+
+.btn-danger:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+/* Modal Game Over */
+.modal-gameover {
+  border-color: var(--alk-pen-red);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.9), 0 0 35px rgba(230, 57, 70, 0.45);
+  text-align: center;
+  padding: 24px;
+}
+
+.modal-danger-badge {
+  display: inline-block;
+  background: rgba(230, 57, 70, 0.25);
+  border: 1px solid var(--alk-pen-red);
+  color: #fca5a5;
+  font-weight: 800;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  padding: 4px 14px;
+  border-radius: var(--radius-full);
+  margin: 0 auto 12px;
+}
+
+.gameover-title {
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  color: #ff6b6b;
+  font-weight: 900;
+  margin-bottom: 8px;
+}
+
+.gameover-desc {
+  font-size: 0.95rem;
+  color: #cbd5e1;
+  max-width: 480px;
+  margin: 0 auto 18px;
+}
+
+.stats-summary-box {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  margin-bottom: 16px;
+}
+
+.stat-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-num {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.stat-lbl {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.prof-verdict {
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #fecaca;
+  background: rgba(230, 57, 70, 0.14);
+  border-left: 3px solid var(--alk-pen-red);
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 16px;
+  text-align: left;
+}
+
+/* Modal Victory */
+.modal-victory {
+  border-color: var(--alk-gold-accent);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.9), 0 0 45px rgba(242, 169, 0, 0.55);
+  text-align: center;
+  padding: 24px;
+}
+
+.modal-gold-badge {
+  display: inline-block;
+  background: rgba(242, 169, 0, 0.25);
+  border: 1px solid var(--alk-gold-accent);
+  color: var(--alk-gold-light);
+  font-weight: 800;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  padding: 4px 14px;
+  border-radius: var(--radius-full);
+  margin: 0 auto 12px;
+}
+
+.victory-title {
+  font-family: var(--font-display);
+  font-size: 2.1rem;
+  color: var(--alk-gold-light);
+  font-weight: 900;
+  text-shadow: 0 0 16px rgba(242, 169, 0, 0.5);
+  margin-bottom: 8px;
+}
+
+.victory-desc {
+  font-size: 0.95rem;
+  color: #e2e8f0;
+  max-width: 480px;
+  margin: 0 auto 18px;
+}
+
+.victory-stats {
+  border-color: var(--glass-border);
+}
+
+/* Modal Pause */
+.modal-pause {
+  text-align: center;
+  padding: 30px;
+  max-width: 440px;
+  gap: 16px;
+}
+
+.modal-pause h2 {
+  font-size: 1.5rem;
+  color: #ffffff;
+}
+
+.modal-pause p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   4. Ekranowe Przyciski Sterowania (#mobile-controls / #touch-controls)
+   Domyślnie ukryte na desktopie, włączane w widokach < 768px lub dotykowych
+   ========================================================================== */
+#mobile-controls,
+#touch-controls,
+.mobile-controls,
+.touch-controls {
+  display: none; /* Domyślnie wyłączone na desktopie */
+  width: 100%;
+  max-width: 800px;
+  margin-top: 10px;
+  padding: 8px 16px;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+  touch-action: none;
+}
+
+/* Responsywność: W widokach poniżej 768px włącz wyświetlanie ekranowych przycisków */
+@media (max-width: 768px), (hover: none) and (pointer: coarse) {
+  #mobile-controls,
+  #touch-controls,
+  .mobile-controls,
+  .touch-controls {
+    display: flex !important;
+  }
+}
+
+.touch-dpad {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.dpad-middle-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.dpad-center {
+  width: 54px;
+  height: 54px;
+  background: rgba(0, 34, 68, 0.45);
+  border-radius: 10px;
+}
+
+.dpad-btn {
+  width: 56px;
+  height: 56px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1.5px solid var(--glass-border);
+  color: #ffffff;
+  font-size: 1.25rem;
+  font-weight: 800;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+  touch-action: none;
+  transition: all var(--transition-fast);
+}
+
+.dpad-btn:active, .dpad-btn.active {
+  background: rgba(242, 169, 0, 0.35);
+  border-color: var(--alk-gold-accent);
+  transform: scale(0.94);
+  box-shadow: 0 0 15px rgba(242, 169, 0, 0.6);
+}
+
+.touch-actions {
+  display: flex;
+  align-items: center;
+}
+
+.touch-action-btn {
+  width: 94px;
+  height: 94px;
+  border-radius: 50%;
+  border: 2px solid var(--alk-blue-sky);
+  background: radial-gradient(circle, var(--alk-blue-light) 0%, var(--alk-blue) 70%, var(--alk-navy-main) 100%);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  box-shadow: 0 8px 20px rgba(0, 75, 135, 0.6);
+  touch-action: none;
+  transition: all var(--transition-fast);
+}
+
+.touch-action-icon {
+  font-size: 1.7rem;
+}
+
+.touch-action-text {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+}
+
+.touch-action-btn:active, .touch-action-btn.active {
+  background: radial-gradient(circle, var(--alk-blue-sky) 0%, var(--alk-blue-light) 70%, var(--alk-blue) 100%);
+  transform: scale(0.92);
+  box-shadow: 0 2px 14px rgba(56, 189, 248, 0.8);
+}
+
+/* ==========================================================================
+   Stopka & Responsywne Dostosowania Mobile-First
+   ========================================================================== */
+.game-footer {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.footer-hint {
+  color: var(--alk-gold-light);
+  font-size: 0.72rem;
+}
+
+/* Widoki poniżej 768px */
+@media (max-width: 768px) {
+  .app-wrapper {
+    padding: 8px 10px 18px;
+    min-height: 100vh;
+  }
+  .univ-header {
+    padding: 8px 12px;
+    margin-bottom: 8px;
+  }
+  .univ-crest {
+    width: 38px;
+    height: 38px;
+    font-size: 1.05rem;
+  }
+  .univ-name {
+    font-size: 0.92rem;
+  }
+  .univ-sub {
+    font-size: 0.65rem;
+  }
+  .game-meta-badge {
+    display: none;
+  }
+  .hud-panel {
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+  .hud-status {
+    grid-column: span 2;
+  }
+  .hud-actions {
+    grid-column: span 2;
+    justify-content: flex-end;
+  }
+  .hud-card {
+    padding: 6px 10px;
+  }
+  .hud-value {
+    font-size: 1.25rem;
+  }
+  .legend-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero-title-group .game-title {
+    font-size: 1.35rem;
+  }
+  .hero-title-group .game-subtitle {
+    font-size: 0.85rem;
+  }
+  .professor-bubble {
+    top: 8px;
+    width: 95%;
+    padding: 8px 12px;
+    gap: 10px;
+  }
+  .bubble-text {
+    font-size: 0.82rem;
+  }
+}
